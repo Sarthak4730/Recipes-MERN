@@ -1,13 +1,14 @@
 import jwt from "jsonwebtoken";
-import User from "./models/User.js";
+import User from "../models/User.js";
 
 const generateToken = (userId) => {
     return jwt.sign( {id: userId}, process.env.JWT_SECRET, {expiresIn: '3min'} );
 };
 
 export const registerUser = async(req, res) => {
+    console.log("inside registerUser");
     const { name, email, password } = req.body;
-
+    
     try {
         const userExists = await User.findOne( {email} );
         if(userExists) return res.status(400).json( {message: "User already registered with this email"} );
@@ -26,6 +27,7 @@ export const registerUser = async(req, res) => {
 };
 
 export const loginUser = async (req, res) => {
+    console.log("inside loginUser");
     const { email, password } = req.body;
 
     try {
