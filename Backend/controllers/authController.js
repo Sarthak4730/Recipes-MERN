@@ -6,7 +6,6 @@ const generateToken = (userId) => {
 };
 
 export const registerUser = async(req, res) => {
-    console.log("inside registerUser");
     const { name, email, password } = req.body;
     
     try {
@@ -27,7 +26,6 @@ export const registerUser = async(req, res) => {
 };
 
 export const loginUser = async (req, res) => {
-    console.log("inside loginUser");
     const { email, password } = req.body;
 
     try {
